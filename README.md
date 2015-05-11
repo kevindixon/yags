@@ -8,7 +8,7 @@ There are plenty of responsive grid systems out there, so why create another? We
 * The ability to set the number of columns and margin/gutter on a per-layout basis
 * Supports fixed margins and column gutter with fluid content
 
-Having looked at a number of grid systems ([semantic.gs](http://semantic.gs/), [pocketgrid](http://arnaudleray.github.io/pocketgrid/), [Unsemantic](http://unsemantic.com/demo-responsive), [Profound Grid](https://github.com/artofrawr/profoundgrid/), [Neat](https://github.com/thoughtbot/neat), [Proportional](https://github.com/mattberridge/Proportional-Grids/), [Golden](http://goldengridsystem.com/), [Inuit](http://terabytenz.github.io/inuit.css-kitchensink/#grids) and [Flawless](https://github.com/laughingwithu/flawless-semantics-grid) none fulfilled all the requirements for the project.
+Having looked at a number of grid systems ([semantic.gs](http://semantic.gs/), [pocketgrid](http://arnaudleray.github.io/pocketgrid/), [Unsemantic](http://unsemantic.com/demo-responsive), [Profound Grid](https://github.com/artofrawr/profoundgrid/), [Neat](https://github.com/thoughtbot/neat), [Proportional](https://github.com/mattberridge/Proportional-Grids/), [Golden](http://goldengridsystem.com/), [Inuit](http://terabytenz.github.io/inuit.css-kitchensink/#grids) and [Flawless](https://github.com/laughingwithu/flawless-semantics-grid)) none fulfilled all the requirements for the project.
 So, we went ahead and wrote our own.
 
 YAGS is based on [pocketgrid](http://arnaudleray.github.io/pocketgrid/) with a number of modifications (including LESS/SASS support).
