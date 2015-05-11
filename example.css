@@ -12,74 +12,7 @@ body {
 
 /* 
 Yet Another Grid System
-Responsive, semantic grid
-Based upon http://arnaudleray.github.io/pocketgrid/
-Supports:
-	- Three layouts (small, medium, large)
-	- Semantic code
-	- Fixed-width gutters
-	- Switching of number of columns per_layout
-	- Bleeding into gutters
-
-Usage:
-	Content is wrapped in a 'row' block element, which in turn contain
-	'cell' block elements that can take up a variable number of columns in the grid. Rows and cells can
-	be any block element (not just <div>).
-	A row is created using .row(), and a cell element using .col($large_cols, $medium_cols, $small_cols)
-	where $large_cols is the number columns for the 'large' layout, $medium_cols the number of
-	columns for the 'medium' layout and $small_cols the number of columns for the 'small' layout.
-	In order to support fixed gutters, the content should then be wrapped in a inned block element
-	using @include col-inner().
-	If you wish a cell to bleed into the gutter, you can do this with .bleed().
-	For example:
-
-	HTML
-		<div class="my-row">
-			<div class="my-cell">
-				<div class="my-inner-cell">
-				</div>
-			<div class="my-cell my-bleed">
-				<div class="my-inner-cell">
-				</div>
-			</div>
-		</div>
-
-	LESS
-	@import "pocketgrid.less";
-	$breakpoint_medium_layout: 1024px; 	/* Over-ride config 
-
-
-	.my-row {
-		@include row();
-	}
-	.my-cell {
-		@include col($large_cols: 12, $medium_cols: 10, $small_cols: 6);
-	}
-	.my-bleed {
-		@include bleed();
-	}
-	.my-inner-cell {
-		@include col-inner();
-	}
-
-Configuration
-For each configuration variable, a default is provided. Over-ride the default by
-defining the configuration variable after you include pocketgrid.less.
-
-The grid supports two breakpoints (three layouts), which are defined as:
-$breakpoint_medium_layout: 1024px;
-$breakpoint_small_layout: 762px;
-
-The number of columns in the grid are controlled on a per_layout basis:
-$columns_large_layout: 12;
-$columns_medium_layout: 12;
-$columns_small_layout: 6;
-
-The gutter size in the grid are controlled on a per_layout basis:
-$gutter_large_layout: 40px;
-$gutter_medium_layout: 30px;
-$gutter_small_layout: 20px;
-Note that is assumed the left/right margin of the grid is the same as the gutter.
+See https://github.com/kevindixon/yags
 */
 /* 
 Responsive breakpoints
