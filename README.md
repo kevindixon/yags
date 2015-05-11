@@ -1,5 +1,5 @@
 # Yet Another Grid System (YAGS)
-A semantic grid system using pure [LESS](http://lesscss.org or [SASS](http://sass-lang.com).
+A semantic grid system using pure [LESS](http://lesscss.org) or [SASS](http://sass-lang.com).
 ## Why?
 There are plenty of responsive grid systems out there, so why create another? Well, in the course of a new  project we needed a grid that was:
 * Semantic in nature - we wanted to avoid polluting the HTML with styling classes as many grid systems seem to do (such as Bootstrap)
@@ -35,6 +35,7 @@ For example:
 </div>
 ```
 ```less
+/* LESS */
 @import "less/yags.less";
 @breakpoint_medium_layout: 1024px; 	/* Over-ride config */
 
@@ -52,6 +53,7 @@ For example:
 }
 ```
 ```sass
+/* SASS */
 @import "sass/yags.scss";
 $breakpoint_medium_layout: 1024px; 	/* Over-ride config */
 
