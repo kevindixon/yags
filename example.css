@@ -1,0 +1,445 @@
+/* Built from SASS */
+/*
+Example usage of YAGS grid
+Note that my use of lots of IDs here isn't a suggestion that you should use so many IDs - its just for convenience!
+*/
+/* resets */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #eeeeee;
+  font-size: 12px; }
+
+/* 
+Yet Another Grid System
+Responsive, semantic grid
+Based upon http://arnaudleray.github.io/pocketgrid/
+Supports:
+	- Three layouts (small, medium, large)
+	- Semantic code
+	- Fixed-width gutters
+	- Switching of number of columns per_layout
+	- Bleeding into gutters
+
+Usage:
+	Content is wrapped in a 'row' block element, which in turn contain
+	'cell' block elements that can take up a variable number of columns in the grid. Rows and cells can
+	be any block element (not just <div>).
+	A row is created using .row(), and a cell element using .col($large_cols, $medium_cols, $small_cols)
+	where $large_cols is the number columns for the 'large' layout, $medium_cols the number of
+	columns for the 'medium' layout and $small_cols the number of columns for the 'small' layout.
+	In order to support fixed gutters, the content should then be wrapped in a inned block element
+	using @include col-inner().
+	If you wish a cell to bleed into the gutter, you can do this with .bleed().
+	For example:
+
+	HTML
+		<div class="my-row">
+			<div class="my-cell">
+				<div class="my-inner-cell">
+				</div>
+			<div class="my-cell my-bleed">
+				<div class="my-inner-cell">
+				</div>
+			</div>
+		</div>
+
+	LESS
+	@import "pocketgrid.less";
+	$breakpoint_medium_layout: 1024px; 	/* Over-ride config 
+
+
+	.my-row {
+		@include row();
+	}
+	.my-cell {
+		@include col($large_cols: 12, $medium_cols: 10, $small_cols: 6);
+	}
+	.my-bleed {
+		@include bleed();
+	}
+	.my-inner-cell {
+		@include col-inner();
+	}
+
+Configuration
+For each configuration variable, a default is provided. Over-ride the default by
+defining the configuration variable after you include pocketgrid.less.
+
+The grid supports two breakpoints (three layouts), which are defined as:
+$breakpoint_medium_layout: 1024px;
+$breakpoint_small_layout: 762px;
+
+The number of columns in the grid are controlled on a per_layout basis:
+$columns_large_layout: 12;
+$columns_medium_layout: 12;
+$columns_small_layout: 6;
+
+The gutter size in the grid are controlled on a per_layout basis:
+$gutter_large_layout: 40px;
+$gutter_medium_layout: 30px;
+$gutter_small_layout: 20px;
+Note that is assumed the left/right margin of the grid is the same as the gutter.
+*/
+/* 
+Responsive breakpoints
+*/
+/*
+Number of columns in the grid
+*/
+/*
+Gutter size
+*/
+/* 
+Calculated column sizes
+*/
+/* 
+Mixin for adding media queries nested in a LESS class or mixin.
+Adds a screen max-width query.
+Usage:
+	.my-class {
+		font-size: 12px;
+		@include responsive(768px) { font-size: 14px; }
+	}
+*/
+/* 
+Border-box include
+*/
+/*
+Row
+*/
+/* 
+Cell
+When calling, pass the number of columns for each layout
+*/
+.block-group {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  *zoom: 1;
+  /* ul/li compatibility */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  /* Nested grid */
+  margin-left: 20px;
+  margin-right: 20px; }
+  @media only screen and (max-width: 1023px) {
+    .block-group {
+      margin-left: 15px;
+      margin-right: 15px; } }
+  @media only screen and (max-width: 761px) {
+    .block-group {
+      margin-left: 10px;
+      margin-right: 10px; } }
+  .block-group:before, .block-group:after {
+    display: table;
+    content: "";
+    line-height: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  .block-group:after {
+    clear: both; }
+  .block-group > .block-group {
+    clear: none;
+    float: left;
+    margin: 0 !important; }
+
+.block {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 8.33333%;
+  text-align: center;
+  background-color: #eeeeee; }
+  @media only screen and (max-width: 1023px) {
+    .block {
+      width: 8.33333%; } }
+  @media only screen and (max-width: 761px) {
+    .block {
+      width: 16.66667%; } }
+  .block:after, .block:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+.block-inner {
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #dddddd;
+  padding: 10px;
+  border: 1px dashed black;
+  height: 100px; }
+  @media only screen and (max-width: 1023px) {
+    .block-inner {
+      margin-left: 15px;
+      margin-right: 15px; } }
+  @media only screen and (max-width: 761px) {
+    .block-inner {
+      margin-left: 10px;
+      margin-right: 10px; } }
+
+#thirteen {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 16.66667%; }
+  @media only screen and (max-width: 1023px) {
+    #thirteen {
+      width: 16.66667%; } }
+  @media only screen and (max-width: 761px) {
+    #thirteen {
+      width: 16.66667%; } }
+  #thirteen:after, #thirteen:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+#fourteen {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 25%; }
+  @media only screen and (max-width: 1023px) {
+    #fourteen {
+      width: 25%; } }
+  @media only screen and (max-width: 761px) {
+    #fourteen {
+      width: 33.33333%; } }
+  #fourteen:after, #fourteen:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+#fifteen {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 33.33333%; }
+  @media only screen and (max-width: 1023px) {
+    #fifteen {
+      width: 33.33333%; } }
+  @media only screen and (max-width: 761px) {
+    #fifteen {
+      width: 33.33333%; } }
+  #fifteen:after, #fifteen:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+#sixteen {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 25%; }
+  @media only screen and (max-width: 1023px) {
+    #sixteen {
+      width: 25%; } }
+  @media only screen and (max-width: 761px) {
+    #sixteen {
+      width: 16.66667%; } }
+  #sixteen:after, #sixteen:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+#seventeen {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 16.66667%; }
+  @media only screen and (max-width: 1023px) {
+    #seventeen {
+      width: 16.66667%; } }
+  @media only screen and (max-width: 761px) {
+    #seventeen {
+      width: 16.66667%; } }
+  #seventeen:after, #seventeen:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  #seventeen .block-inner {
+    margin-right: 0px; }
+
+#eighteen {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 25%; }
+  @media only screen and (max-width: 1023px) {
+    #eighteen {
+      width: 25%; } }
+  @media only screen and (max-width: 761px) {
+    #eighteen {
+      width: 16.66667%; } }
+  #eighteen:after, #eighteen:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+#nineteen {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 33.33333%; }
+  @media only screen and (max-width: 1023px) {
+    #nineteen {
+      width: 33.33333%; } }
+  @media only screen and (max-width: 761px) {
+    #nineteen {
+      width: 50%; } }
+  #nineteen:after, #nineteen:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+#twenty {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 25%; }
+  @media only screen and (max-width: 1023px) {
+    #twenty {
+      width: 25%; } }
+  @media only screen and (max-width: 761px) {
+    #twenty {
+      width: 16.66667%; } }
+  #twenty:after, #twenty:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  #twenty .block-inner {
+    margin-left: 0px; }
+
+#twentyone {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 100%; }
+  @media only screen and (max-width: 1023px) {
+    #twentyone {
+      width: 100%; } }
+  @media only screen and (max-width: 761px) {
+    #twentyone {
+      width: 100%; } }
+  #twentyone:after, #twentyone:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+#twentytwo {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 33.33333%; }
+  @media only screen and (max-width: 1023px) {
+    #twentytwo {
+      width: 33.33333%; } }
+  @media only screen and (max-width: 761px) {
+    #twentytwo {
+      width: 16.66667%; } }
+  #twentytwo:after, #twentytwo:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+#twentythree {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 25%; }
+  @media only screen and (max-width: 1023px) {
+    #twentythree {
+      width: 25%; } }
+  @media only screen and (max-width: 761px) {
+    #twentythree {
+      width: 16.66667%; } }
+  #twentythree:after, #twentythree:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+#twentyfour {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 25%;
+  margin-left: 16.66667%; }
+  @media only screen and (max-width: 1023px) {
+    #twentyfour {
+      width: 25%; } }
+  @media only screen and (max-width: 761px) {
+    #twentyfour {
+      width: 33.33333%; } }
+  #twentyfour:after, #twentyfour:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  @media only screen and (max-width: 1023px) {
+    #twentyfour {
+      margin-left: 16.66667%; } }
+  @media only screen and (max-width: 761px) {
+    #twentyfour {
+      margin-left: 33.33333%; } }
+
+#twentysix {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 25%;
+  margin-right: 25%; }
+  @media only screen and (max-width: 1023px) {
+    #twentysix {
+      width: 25%; } }
+  @media only screen and (max-width: 761px) {
+    #twentysix {
+      width: 33.33333%; } }
+  #twentysix:after, #twentysix:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  @media only screen and (max-width: 1023px) {
+    #twentysix {
+      margin-right: 25%; } }
+  @media only screen and (max-width: 761px) {
+    #twentysix {
+      margin-right: 33.33333%; } }
+
+#twentyseven {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 41.66667%; }
+  @media only screen and (max-width: 1023px) {
+    #twentyseven {
+      width: 41.66667%; } }
+  @media only screen and (max-width: 761px) {
+    #twentyseven {
+      width: 16.66667%; } }
+  #twentyseven:after, #twentyseven:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+#eighteen .block-inner, #nineteen .block-inner, #twentyone .block-inner {
+  margin-left: 0px; }
+#eighteen .block-inner, #nineteen .block-inner, #twentyone .block-inner {
+  margin-right: 0px; }
+
+/*# sourceMappingURL=example.css.map */

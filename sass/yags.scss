@@ -1,0 +1,239 @@
+/* 
+Yet Another Grid System
+Responsive, semantic grid
+Based upon http://arnaudleray.github.io/pocketgrid/
+Supports:
+	- Three layouts (small, medium, large)
+	- Semantic code
+	- Fixed-width gutters
+	- Switching of number of columns per_layout
+	- Bleeding into gutters
+
+Usage:
+	Content is wrapped in a 'row' block element, which in turn contain
+	'cell' block elements that can take up a variable number of columns in the grid. Rows and cells can
+	be any block element (not just <div>).
+	A row is created using .row(), and a cell element using .col($large_cols, $medium_cols, $small_cols)
+	where $large_cols is the number columns for the 'large' layout, $medium_cols the number of
+	columns for the 'medium' layout and $small_cols the number of columns for the 'small' layout.
+	In order to support fixed gutters, the content should then be wrapped in a inned block element
+	using @include col-inner().
+	If you wish a cell to bleed into the gutter, you can do this with .bleed().
+	For example:
+
+	HTML
+		<div class="my-row">
+			<div class="my-cell">
+				<div class="my-inner-cell">
+				</div>
+			<div class="my-cell my-bleed">
+				<div class="my-inner-cell">
+				</div>
+			</div>
+		</div>
+
+	LESS
+	@import "pocketgrid.less";
+	$breakpoint_medium_layout: 1024px; 	/* Over-ride config 
+
+
+	.my-row {
+		@include row();
+	}
+	.my-cell {
+		@include col($large_cols: 12, $medium_cols: 10, $small_cols: 6);
+	}
+	.my-bleed {
+		@include bleed();
+	}
+	.my-inner-cell {
+		@include col-inner();
+	}
+
+Configuration
+For each configuration variable, a default is provided. Over-ride the default by
+defining the configuration variable after you include pocketgrid.less.
+
+The grid supports two breakpoints (three layouts), which are defined as:
+$breakpoint_medium_layout: 1024px;
+$breakpoint_small_layout: 762px;
+
+The number of columns in the grid are controlled on a per_layout basis:
+$columns_large_layout: 12;
+$columns_medium_layout: 12;
+$columns_small_layout: 6;
+
+The gutter size in the grid are controlled on a per_layout basis:
+$gutter_large_layout: 40px;
+$gutter_medium_layout: 30px;
+$gutter_small_layout: 20px;
+Note that is assumed the left/right margin of the grid is the same as the gutter.
+*/
+
+/* 
+Responsive breakpoints
+*/
+$breakpoint_medium_layout: 1024px;
+$breakpoint_small_layout: 762px;
+
+/*
+Number of columns in the grid
+*/
+$columns_large_layout: 12;
+$columns_medium_layout: 12;
+$columns_small_layout: 6;
+
+/*
+Gutter size
+*/
+$gutter_large_layout: 40px;
+$gutter_medium_layout: 30px;
+$gutter_small_layout: 20px;
+
+/* 
+Calculated column sizes
+*/
+$column_width_large_layout: (100%/$columns_large_layout);
+$column_width_medium_layout: (100%/$columns_medium_layout);
+$column_width_small_layout: (100%/$columns_small_layout);
+
+/* 
+Mixin for adding media queries nested in a LESS class or mixin.
+Adds a screen max-width query.
+Usage:
+	.my-class {
+		font-size: 12px;
+		@include responsive(768px) { font-size: 14px; }
+	}
+*/
+@mixin responsive($maxWidth) {
+    @media only screen and (max-width: $maxWidth) {
+        @content;
+    }
+}
+
+/* 
+Border-box include
+*/
+@mixin border-box() {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*
+Row
+*/
+@mixin row() {
+	@include border-box();
+    *zoom: 1;
+	@include responsive($breakpoint_medium_layout - 1) {
+		margin-left: $gutter_medium_layout/2;
+		margin-right: $gutter_medium_layout/2;
+	}
+
+	@include responsive($breakpoint_small_layout - 1) {
+		margin-left: $gutter_small_layout/2;
+		margin-right: $gutter_small_layout/2;
+	}
+
+    &:before, &:after {
+        display: table;
+	    content: "";
+	    line-height: 0;
+		@include border-box();
+    }
+
+    &:after {
+	    clear: both;
+	}
+
+	/* ul/li compatibility */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    /* Nested grid */
+	& > & {
+	    clear: none;
+	    float: left;
+	    margin: 0 !important;
+	}
+
+	margin-left: $gutter_large_layout/2;
+	margin-right: $gutter_large_layout/2;
+}
+
+	
+/* 
+Cell
+When calling, pass the number of columns for each layout
+*/
+@mixin col($large_cols: $num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
+	@include border-box();
+    float: left;
+
+	@include responsive($breakpoint_medium_layout - 1) {
+		width: $column_width_medium_layout * $medium_cols;
+	}
+
+	@include responsive($breakpoint_small_layout - 1) {
+		width: $column_width_small_layout * $small_cols;
+	}
+
+	&:after, &:before {
+		@include border-box();
+	}
+
+    width: $column_width_large_layout*$large_cols;
+}
+
+@mixin col-inner() {
+	margin-left: $gutter_large_layout/2;
+	margin-right: $gutter_large_layout/2;
+
+	@include responsive($breakpoint_medium_layout - 1) {
+		margin-left: $gutter_medium_layout/2;
+		margin-right: $gutter_medium_layout/2;
+	}
+
+	@include responsive($breakpoint_small_layout - 1) {
+		margin-left: $gutter_small_layout/2;
+		margin-right: $gutter_small_layout/2;
+	}
+}
+
+@mixin bleed($left:true, $right:true) {
+	@if $left == true {
+		& {margin-left: 0px; }
+	}
+	
+	@if $right == true  {
+		& {margin-right: 0px; }
+	}
+}
+
+@mixin offset-right($large_cols:$num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
+	@include responsive($breakpoint_medium_layout - 1) {
+		margin-left: $column_width_medium_layout * $medium_cols;
+	}
+
+	@include responsive($breakpoint_small_layout - 1) {
+		margin-left: $column_width_small_layout * $small_cols;
+	}
+
+	margin-left: $column_width_large_layout * $large_cols;
+}
+
+@mixin offset-left($large_cols:$num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
+	@include responsive($breakpoint_medium_layout - 1) {
+		margin-right: $column_width_medium_layout * $medium_cols;
+	}
+
+	@include responsive($breakpoint_small_layout - 1) {
+		margin-right: $column_width_small_layout * $small_cols;
+	}
+
+	margin-right: $column_width_large_layout * $large_cols;
+}
+

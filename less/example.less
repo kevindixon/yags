@@ -1,0 +1,104 @@
+/* Built from LESS */
+/*
+Example usage of YAGS grid
+Note that my use of lots of IDs here isn't a suggestion that you should use so many IDs - its just for convenience!
+*/
+
+/* resets */
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #eeeeee;
+	font-size: 12px;
+}
+
+@import "yags.less";
+
+.block-group {
+	.row();
+}
+
+.block {
+	.col(1, 1, 1);
+	text-align: center;
+	background-color: #eeeeee;
+}
+
+.block-inner {
+	.col-inner();
+	background-color: #dddddd;
+	padding: 10px;
+	border: 1px dashed black;
+	height: 100px;
+}
+
+#thirteen {
+	.col(2, 2, 1);
+}
+
+#fourteen {
+	.col(3, 3, 2);
+}
+
+#fifteen {
+	.col(4, 4, 2);
+}
+
+#sixteen {
+	.col(3, 3, 1);
+}
+
+#seventeen {
+	.col(2, 2, 1);
+
+	.block-inner {
+		.bleed(@left:false, @right:true);
+	}
+}
+
+#eighteen {
+	.col(3, 3, 1);
+}
+
+#nineteen {
+	.col(4, 4, 3);
+}
+
+#twenty {
+	.col(3, 3, 1);
+
+	.block-inner {
+		.bleed(@left:true, @right:false);
+	}
+}
+
+#twentyone {
+	.col(12, 12, 6);
+}
+
+#twentytwo {
+	.col(4, 4, 1);
+}
+
+#twentythree {
+	.col(3, 3, 1);
+}
+
+#twentyfour {
+	.col(3, 3, 2);
+	.offset-right(2, 2, 2);
+}
+
+#twentysix {
+	.col(3, 3, 2);
+	.offset-left(3, 3, 2);
+}
+
+#twentyseven {
+	.col(5, 5, 1);
+}
+
+#eighteen .block-inner, #nineteen .block-inner, #twentyone .block-inner {
+	.bleed();
+}
+
