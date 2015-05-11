@@ -123,7 +123,8 @@ When calling, pass the number of columns for each layout
   margin: 0;
   /* Nested grid */
   margin-left: 20px;
-  margin-right: 20px; }
+  margin-right: 20px;
+  background-color: black; }
   @media only screen and (max-width: 1023px) {
     .block-group {
       margin-left: 15px;
@@ -153,7 +154,7 @@ When calling, pass the number of columns for each layout
   float: left;
   width: 8.33333%;
   text-align: center;
-  background-color: #eeeeee; }
+  background-color: black; }
   @media only screen and (max-width: 1023px) {
     .block {
       width: 8.33333%; } }
