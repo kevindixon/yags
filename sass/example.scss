@@ -75,6 +75,14 @@ body {
 	@include offset-right(2, 1, 1);
 }
 
+#block-twentyfive {
+	@include push(4, 4, 2);
+}
+
+#block-twentysix {
+	@include pull(4, 4, 2);
+}
+
 #container-two {
 	@include row(true, true);
 	margin-top: 30px;

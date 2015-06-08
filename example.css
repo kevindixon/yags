@@ -197,6 +197,30 @@ When calling, pass the number of columns for each layout
     #block-twentytwo {
       margin-left: 16.66667%; } }
 
+#block-twentyfive {
+  position: relative;
+  left: 33.33333%; }
+  @media only screen and (max-width: 1023px) {
+    #block-twentyfive {
+      /* Move the column to the right
+      (left == -BEFORE's width) */
+      left: 33.33333%; } }
+  @media only screen and (max-width: 761px) {
+    #block-twentyfive {
+      left: 33.33333%; } }
+
+#block-twentysix {
+  position: relative;
+  left: -33.33333%; }
+  @media only screen and (max-width: 1023px) {
+    #block-twentysix {
+      /* Move the column to the left
+      (left == -BEFORE's width) */
+      left: -33.33333%; } }
+  @media only screen and (max-width: 761px) {
+    #block-twentysix {
+      left: -33.33333%; } }
+
 #container-two {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

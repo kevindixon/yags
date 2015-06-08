@@ -71,18 +71,95 @@ $breakpoint_medium_layout: 1024px; 	/* Over-ride config */
 }
 ```
 
-###Row()
+###row()
 This mixin adds a row, and takes two parameters which specify whether margin should be included on the left and right respectively. Both default to 'false'.
 ```sass
+/* SASS */
 .my-row {
 	// Include no margin in the row
 	@include row($margin-left: false, $margin-right: false);
 }
 ```
 ```less
+/* LESS */
 .my-row {
 	// Include no margin in the row
 	@include row(@margin-left: false, @margin-right: false);
+}
+```
+
+###col()
+This mixin adds a cell within a row, and takes three parameters - the number of columns the cell should span for the large, medium and small layouts respectively.
+A cell must be contained within a row.
+For instance:
+```sass
+/* SASS */
+.my-cell {
+	@include col($large_cols: 12, $medium_cols: 10, $small_cols: 6);
+}
+```
+```less
+/* LESS */
+.my-cell {
+	.col(@large_cols: 12, @medium_cols: 10, @small_cols: 6);
+}
+```
+
+##Push/pull (switch cell order)
+To change the order of two cells, ```push()``` the first column by the width (in columns) of the second column and ```pull()``` the second by width of the first, specifying
+the number of columsn for each layout.
+For instance to change the order of two cells which are 4 col in desktop and tablet and 2 on mobile:
+```html
+<div class="my-row">
+	<div id="cell-one">
+		<div class="inner-cell">
+			<p>first cell</p>
+		</div>
+	<div id="cell-two">
+		<div class="inner-cell">
+			<p>second cell</p>
+		</div>
+	</div>
+</div>
+
+```
+```less
+/* LESS */
+#cell-one {
+	.col(4, 4, 2)
+	.push(4, 4, 2);
+}
+#cell-two {
+	.col(4, 4, 2)
+	.pull(4, 4, 2);
+}
+```
+```sass
+/* SASS */
+#cell-one {
+	@include col(4, 4, 2)
+	@include push(4, 4, 2);
+}
+#cell-two {
+	@include col(4, 4, 2)
+	@include pull(4, 4, 2);
+}
+```
+
+##Offset a cell
+You can offset a cell with the ```offset-left()``` and ```offset-right()``` mixins, which will move the cell by a specified number of columns (separately for the 3 layouts) leaving 
+a blank space for the offset.
+For instance, the following will offset the cell to the left by 3 columns, 2 columns and 1 column for the large, medium, small layouts respectively:
+```less
+/* LESS */
+.offset-cell-left-two {
+	.offset-left(3, 2, 1);
+}
+```
+```sass
+/* SASS */
+.offset-cell-left-two {
+	@include offset-left(3, 2, 1);
 }
 ```
 

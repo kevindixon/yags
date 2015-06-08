@@ -182,3 +182,34 @@ When calling, pass the number of columns for each layout
 	margin-right: $column_width_large_layout * $large_cols;
 }
 
+@mixin pull($large_cols:$num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
+	position: relative; 
+
+	@include responsive($breakpoint_medium_layout - 1) {
+		/* Move the column to the left
+		(left == -BEFORE's width) */
+		left: -($column_width_medium_layout * $medium_cols);
+  	}
+
+	@include responsive($breakpoint_small_layout - 1) {
+		left: -($column_width_small_layout * $small_cols);
+	}
+
+	left: -($column_width_large_layout * $large_cols);
+}
+
+@mixin push($large_cols:$num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
+	position: relative; 
+
+	@include responsive($breakpoint_medium_layout - 1) {
+		/* Move the column to the right
+		(left == -BEFORE's width) */
+		left: ($column_width_medium_layout * $medium_cols);
+  	}
+
+	@include responsive($breakpoint_small_layout - 1) {
+		left: ($column_width_small_layout * $small_cols);
+	}
+
+	left: ($column_width_large_layout * $large_cols);
+}
