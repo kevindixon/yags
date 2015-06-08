@@ -20,9 +20,8 @@ body {
 }
 
 .block {
-	@include col(1, 1, 1);
 	text-align: center;
-	background-color: black;
+	background-color: #888888;
 }
 
 .block-inner {
@@ -33,73 +32,56 @@ body {
 	height: 100px;
 }
 
-#thirteen {
-	@include col(2, 2, 1);
+.block-small {
+	@include col(1, 1, 1);
 }
 
-#fourteen {
-	@include col(3, 3, 2);
-}
-
-#fifteen {
+.block-medium {
 	@include col(4, 4, 2);
 }
 
-#sixteen {
-	@include col(3, 3, 1);
+.block-large {
+	@include col(6, 12, 6);
 }
 
-#seventeen {
-	@include col(2, 2, 1);
+.block-xlarge {
+	@include col(12, 12, 6);
 
 	.block-inner {
-		@include bleed($left:false, $right:true);
+		@include bleed($left:true, $right:true);
 	}
 }
 
-#eighteen {
-	@include col(3, 3, 1);
-}
-
-#nineteen {
-	@include col(4, 4, 3);
-}
-
-#twenty {
-	@include col(3, 3, 1);
-
+#block-sixteen {
 	.block-inner {
 		@include bleed($left:true, $right:false);
 	}
 }
 
-#twentyone {
-	@include col(12, 12, 6);
+#block-seventeen {
+	.block-inner {
+		@include bleed($left:true, $right:true);
+	}
 }
 
-#twentytwo {
-	@include col(4, 4, 1);
+#block-eighteen {
+	.block-inner {
+		@include bleed($left:false, $right:true);
+	}
 }
 
-#twentythree {
-	@include col(3, 3, 1);
+#block-twentytwo {
+	@include col(2, 2, 1);
+	@include offset-right(2, 1, 1);
 }
 
-#twentyfour {
-	@include col(3, 3, 2);
-	@include offset-right(2, 2, 2);
+#container-two {
+	@include row(true, true);
+	margin-top: 30px;
+
+	.block-inner {
+		@include bleed($left:true, $right:true);
+	}
 }
 
-#twentysix {
-	@include col(3, 3, 2);
-	@include offset-left(3, 3, 2);
-}
-
-#twentyseven {
-	@include col(5, 5, 1);
-}
-
-#eighteen .block-inner, #nineteen .block-inner, #twentyone .block-inner {
-	@include bleed();
-}
 

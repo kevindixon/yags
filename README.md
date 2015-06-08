@@ -71,6 +71,21 @@ $breakpoint_medium_layout: 1024px; 	/* Over-ride config */
 }
 ```
 
+###Row()
+This mixin adds a row, and takes two parameters which specify whether margin should be included on the left and right respectively. Both default to 'false'.
+```sass
+.my-row {
+	// Include no margin in the row
+	@include row($margin-left: false, $margin-right: false);
+}
+```
+```less
+.my-row {
+	// Include no margin in the row
+	@include row(@margin-left: false, @margin-right: false);
+}
+```
+
 ##Configuration
 For each configuration variable, a default is provided. Over-ride the default by defining the configuration variable after you include ```yags.less``` or ```yags.scss```.
 

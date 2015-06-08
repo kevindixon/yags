@@ -57,17 +57,37 @@ Border-box include
 /*
 Row
 */
-@mixin row() {
+@mixin row($margin-left: false, $margin-right: false) {
 	@include border-box();
     *zoom: 1;
-	@include responsive($breakpoint_medium_layout - 1) {
-		margin-left: $gutter_medium_layout/2;
-		margin-right: $gutter_medium_layout/2;
+
+	/* ul/li compatibility */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+	@if $margin-left == true {
+		@include responsive($breakpoint_medium_layout - 1) {
+			margin-left: $gutter_medium_layout/2;
+		}
+
+		@include responsive($breakpoint_small_layout - 1) {
+			margin-left: $gutter_small_layout/2;
+		}
+
+		margin-left: $gutter_large_layout/2;
 	}
 
-	@include responsive($breakpoint_small_layout - 1) {
-		margin-left: $gutter_small_layout/2;
-		margin-right: $gutter_small_layout/2;
+	@if $margin-right == true {
+		@include responsive($breakpoint_medium_layout - 1) {
+			margin-right: $gutter_medium_layout/2;
+		}
+
+		@include responsive($breakpoint_small_layout - 1) {
+			margin-right: $gutter_small_layout/2;
+		}
+
+		margin-right: $gutter_large_layout/2;
 	}
 
     &:before, &:after {
@@ -81,20 +101,12 @@ Row
 	    clear: both;
 	}
 
-	/* ul/li compatibility */
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-
     /* Nested grid */
 	& > & {
 	    clear: none;
 	    float: left;
 	    margin: 0 !important;
 	}
-
-	margin-left: $gutter_large_layout/2;
-	margin-right: $gutter_large_layout/2;
 }
 
 	
