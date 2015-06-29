@@ -16,12 +16,10 @@ body {
 
 .block-group {
 	.row();
-	background-color: black;
 }
 
 .block {
 	text-align: center;
-	background-color: #888888;
 }
 
 .block-inner {
@@ -92,4 +90,27 @@ body {
 	}
 }
 
+/*
+Grid overlay 
+*/
+.grid-overlay {
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+}
 
+.overlay-col {
+	height: 100%;
+	.col(1, 1, 1);
+	background-color: red;
+	opacity: 0.3;
+
+	.inner {
+		height: 100%;
+		.col-inner();
+		background-color: blue;
+		opacity: 0.5;
+	}
+}

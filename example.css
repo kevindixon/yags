@@ -54,8 +54,7 @@ When calling, pass the number of columns for each layout
   list-style-type: none;
   padding: 0;
   margin: 0;
-  /* Nested grid */
-  background-color: black; }
+  /* Nested grid */ }
   .block-group:before, .block-group:after {
     display: table;
     content: "";
@@ -71,8 +70,7 @@ When calling, pass the number of columns for each layout
     margin: 0 !important; }
 
 .block {
-  text-align: center;
-  background-color: #888888; }
+  text-align: center; }
 
 .block-inner {
   margin-left: 20px;
@@ -263,5 +261,49 @@ When calling, pass the number of columns for each layout
     margin-left: 0px; }
   #container-two .block-inner {
     margin-right: 0px; }
+
+/*
+Grid overlay 
+*/
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999; }
+
+.overlay-col {
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 8.33333%;
+  background-color: red;
+  opacity: 0.3; }
+  @media only screen and (max-width: 1023px) {
+    .overlay-col {
+      width: 8.33333%; } }
+  @media only screen and (max-width: 761px) {
+    .overlay-col {
+      width: 16.66667%; } }
+  .overlay-col:after, .overlay-col:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  .overlay-col .inner {
+    height: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: blue;
+    opacity: 0.5; }
+    @media only screen and (max-width: 1023px) {
+      .overlay-col .inner {
+        margin-left: 15px;
+        margin-right: 15px; } }
+    @media only screen and (max-width: 761px) {
+      .overlay-col .inner {
+        margin-left: 10px;
+        margin-right: 10px; } }
 
 /*# sourceMappingURL=example.css.map */
