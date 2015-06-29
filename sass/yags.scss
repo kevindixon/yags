@@ -48,7 +48,7 @@ Usage:
 /* 
 Border-box include
 */
-@mixin border-box() {
+.border-box {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -58,7 +58,7 @@ Border-box include
 Row
 */
 @mixin row($margin-left: false, $margin-right: false) {
-	@include border-box();
+	@extend .border-box;
     *zoom: 1;
 
 	/* ul/li compatibility */
@@ -94,7 +94,7 @@ Row
         display: table;
 	    content: "";
 	    line-height: 0;
-		@include border-box();
+		@extend .border-box;
     }
 
     &:after {
@@ -115,7 +115,7 @@ Cell
 When calling, pass the number of columns for each layout
 */
 @mixin col($large_cols: $num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
-	@include border-box();
+	@extend .border-box;
     float: left;
 
 	@include responsive($breakpoint_medium_layout - 1) {
@@ -127,7 +127,7 @@ When calling, pass the number of columns for each layout
 	}
 
 	&:after, &:before {
-		@include border-box();
+		@extend .border-box;
 	}
 
     width: $column_width_large_layout*$large_cols;
