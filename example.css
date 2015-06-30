@@ -38,57 +38,109 @@ Usage:
 /* 
 Border-box include
 */
-.border-box, .block-group, .block-group:before, .block-group:after, .block-small, .block-small:after, .block-small:before, .block-medium, .block-medium:after, .block-medium:before, .block-large, .block-large:after, .block-large:before, .block-xlarge, .block-xlarge:after, .block-xlarge:before, #block-twentytwo, #block-twentytwo:after, #block-twentytwo:before, #container-two, #container-two:before, #container-two:after, .overlay-col, .overlay-col:after, .overlay-col:before {
+.border-box, .row, .block-group, #container-two, .row:before, .block-group:before, #container-two:before, .row:after, .block-group:after, #container-two:after, .cell-base, .block-small, .block-medium, .block-large, .block-xlarge, #block-twentytwo, .overlay-col, .cell-base:after, .block-small:after, .block-medium:after, .block-large:after, .block-xlarge:after, #block-twentytwo:after, .overlay-col:after, .cell-base:before, .block-small:before, .block-medium:before, .block-large:before, .block-xlarge:before, #block-twentytwo:before, .overlay-col:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
 /*
-Row
+Base class for a row
 */
-/* 
-Cell
-When calling, pass the number of columns for each layout
-*/
-.block-group {
+.row, .block-group, #container-two {
   *zoom: 1;
   /* ul/li compatibility */
   list-style-type: none;
   padding: 0;
   margin: 0;
   /* Nested grid */ }
-  .block-group:before, .block-group:after {
+  .row:before, .block-group:before, #container-two:before, .row:after, .block-group:after, #container-two:after {
     display: table;
     content: "";
     line-height: 0; }
-  .block-group:after {
+  .row:after, .block-group:after, #container-two:after {
     clear: both; }
-  .block-group > .block-group {
+  .row > .row, .block-group > .row, #container-two > .row, .row > .block-group, .block-group > .block-group, #container-two > .block-group, .row > #container-two, .block-group > #container-two, #container-two > #container-two {
     clear: none;
     float: left;
     margin: 0 !important; }
+
+/*
+Row
+*/
+/* 
+Class to add row right margin
+*/
+.row-right-margin, #container-two {
+  margin-right: 20px; }
+  @media only screen and (max-width: 1023px) {
+    .row-right-margin, #container-two {
+      margin-right: 15px; } }
+  @media only screen and (max-width: 761px) {
+    .row-right-margin, #container-two {
+      margin-right: 10px; } }
+
+/* 
+Class to add row left margin
+*/
+.row-left-margin, #container-two {
+  margin-left: 20px; }
+  @media only screen and (max-width: 1023px) {
+    .row-left-margin, #container-two {
+      margin-left: 15px; } }
+  @media only screen and (max-width: 761px) {
+    .row-left-margin, #container-two {
+      margin-left: 10px; } }
+
+/*
+Base class for a cell
+*/
+.cell-base, .block-small, .block-medium, .block-large, .block-xlarge, #block-twentytwo, .overlay-col {
+  float: left; }
+
+/* 
+col
+Mixin to set element covering variable number of columns per layout
+When calling, pass the number of columns for each layout
+*/
+/*
+col-mobile
+Mixin to set element covering a number of columns for the mobile layout
+When calling, pass the number of columns for the mobile layout
+*/
+/*
+col-tablet
+Mixin to set element covering a number of columns for the tablet layout
+When calling, pass the number of columns for the tablet layout
+*/
+/*
+col-desktop
+Mixin to set element covering a number of columns for the desktop layout
+When calling, pass the number of columns for the desktop layout
+Note this is not wrapped in a media query (for older browser support) so should
+come before mobile and tablet columns
+*/
+.col-inner, .block-inner, .overlay-col .inner {
+  margin-left: 20px;
+  margin-right: 20px; }
+  @media only screen and (max-width: 1023px) {
+    .col-inner, .block-inner, .overlay-col .inner {
+      margin-left: 15px;
+      margin-right: 15px; } }
+  @media only screen and (max-width: 761px) {
+    .col-inner, .block-inner, .overlay-col .inner {
+      margin-left: 10px;
+      margin-right: 10px; } }
 
 .block {
   text-align: center; }
 
 .block-inner {
-  margin-left: 20px;
-  margin-right: 20px;
   background-color: #dddddd;
   padding: 10px;
   border: 1px dashed black;
   height: 100px; }
-  @media only screen and (max-width: 1023px) {
-    .block-inner {
-      margin-left: 15px;
-      margin-right: 15px; } }
-  @media only screen and (max-width: 761px) {
-    .block-inner {
-      margin-left: 10px;
-      margin-right: 10px; } }
 
 .block-small {
-  float: left;
   width: 8.33333%; }
   @media only screen and (max-width: 1023px) {
     .block-small {
@@ -98,7 +150,6 @@ When calling, pass the number of columns for each layout
       width: 16.66667%; } }
 
 .block-medium {
-  float: left;
   width: 33.33333%; }
   @media only screen and (max-width: 1023px) {
     .block-medium {
@@ -108,7 +159,6 @@ When calling, pass the number of columns for each layout
       width: 33.33333%; } }
 
 .block-large {
-  float: left;
   width: 50%; }
   @media only screen and (max-width: 1023px) {
     .block-large {
@@ -118,7 +168,6 @@ When calling, pass the number of columns for each layout
       width: 100%; } }
 
 .block-xlarge {
-  float: left;
   width: 100%; }
   @media only screen and (max-width: 1023px) {
     .block-xlarge {
@@ -143,7 +192,6 @@ When calling, pass the number of columns for each layout
   margin-right: 0px; }
 
 #block-twentytwo {
-  float: left;
   width: 16.66667%;
   margin-left: 16.66667%; }
   @media only screen and (max-width: 1023px) {
@@ -184,37 +232,7 @@ When calling, pass the number of columns for each layout
       left: -33.33333%; } }
 
 #container-two {
-  *zoom: 1;
-  /* ul/li compatibility */
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  margin-left: 20px;
-  margin-right: 20px;
-  /* Nested grid */
   margin-top: 30px; }
-  @media only screen and (max-width: 1023px) {
-    #container-two {
-      margin-left: 15px; } }
-  @media only screen and (max-width: 761px) {
-    #container-two {
-      margin-left: 10px; } }
-  @media only screen and (max-width: 1023px) {
-    #container-two {
-      margin-right: 15px; } }
-  @media only screen and (max-width: 761px) {
-    #container-two {
-      margin-right: 10px; } }
-  #container-two:before, #container-two:after {
-    display: table;
-    content: "";
-    line-height: 0; }
-  #container-two:after {
-    clear: both; }
-  #container-two > #container-two {
-    clear: none;
-    float: left;
-    margin: 0 !important; }
   #container-two .block-inner {
     margin-left: 0px; }
   #container-two .block-inner {
@@ -232,7 +250,6 @@ Grid overlay
 
 .overlay-col {
   height: 100%;
-  float: left;
   width: 8.33333%;
   background-color: red;
   opacity: 0.3; }
@@ -244,17 +261,7 @@ Grid overlay
       width: 16.66667%; } }
   .overlay-col .inner {
     height: 100%;
-    margin-left: 20px;
-    margin-right: 20px;
     background-color: blue;
     opacity: 0.5; }
-    @media only screen and (max-width: 1023px) {
-      .overlay-col .inner {
-        margin-left: 15px;
-        margin-right: 15px; } }
-    @media only screen and (max-width: 761px) {
-      .overlay-col .inner {
-        margin-left: 10px;
-        margin-right: 10px; } }
 
 /*# sourceMappingURL=example.css.map */

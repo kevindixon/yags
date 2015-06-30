@@ -55,9 +55,9 @@ Border-box include
 }
 
 /*
-Row
+Base class for a row
 */
-@mixin row($margin-left: false, $margin-right: false) {
+.row {
 	@extend .border-box;
     *zoom: 1;
 
@@ -65,30 +65,6 @@ Row
     list-style-type: none;
     padding: 0;
     margin: 0;
-
-	@if $margin-left == true {
-		@include responsive($breakpoint_medium_layout - 1) {
-			margin-left: $gutter_medium_layout/2;
-		}
-
-		@include responsive($breakpoint_small_layout - 1) {
-			margin-left: $gutter_small_layout/2;
-		}
-
-		margin-left: $gutter_large_layout/2;
-	}
-
-	@if $margin-right == true {
-		@include responsive($breakpoint_medium_layout - 1) {
-			margin-right: $gutter_medium_layout/2;
-		}
-
-		@include responsive($breakpoint_small_layout - 1) {
-			margin-right: $gutter_small_layout/2;
-		}
-
-		margin-right: $gutter_large_layout/2;
-	}
 
     &:before, &:after {
         display: table;
@@ -109,31 +85,108 @@ Row
 	}
 }
 
-	
-/* 
-Cell
-When calling, pass the number of columns for each layout
+/*
+Row
 */
-@mixin col($large_cols: $num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
-	@extend .border-box;
-    float: left;
+@mixin row($margin-left: false, $margin-right: false) {
+	@extend .row;
 
+	@if $margin-left == true {
+		@extend .row-left-margin;
+	}
+
+	@if $margin-right == true {
+		@extend .row-right-margin;
+	}
+}
+
+/* 
+Class to add row right margin
+*/
+.row-right-margin {
 	@include responsive($breakpoint_medium_layout - 1) {
-		width: $column_width_medium_layout * $medium_cols;
+		margin-right: $gutter_medium_layout/2;
 	}
 
 	@include responsive($breakpoint_small_layout - 1) {
-		width: $column_width_small_layout * $small_cols;
+		margin-right: $gutter_small_layout/2;
 	}
 
+	margin-right: $gutter_large_layout/2;
+}
+
+/* 
+Class to add row left margin
+*/
+.row-left-margin {
+	@include responsive($breakpoint_medium_layout - 1) {
+		margin-left: $gutter_medium_layout/2;
+	}
+
+	@include responsive($breakpoint_small_layout - 1) {
+		margin-left: $gutter_small_layout/2;
+	}
+
+	margin-left: $gutter_large_layout/2;
+}
+
+/*
+Base class for a cell
+*/
+.cell-base {
+	@extend .border-box;
+	float: left;
 	&:after, &:before {
 		@extend .border-box;
 	}
-
-    width: $column_width_large_layout*$large_cols;
+}
+	
+/* 
+col
+Mixin to set element covering variable number of columns per layout
+When calling, pass the number of columns for each layout
+*/
+@mixin col($large_cols: $num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
+	@extend .cell-base;
+	@include col-desktop($large_cols);
+    @include col-tablet($medium_cols);
+    @include col-mobile($small_cols);
 }
 
-@mixin col-inner() {
+/*
+col-mobile
+Mixin to set element covering a number of columns for the mobile layout
+When calling, pass the number of columns for the mobile layout
+*/
+@mixin col-mobile($small_cols) {
+	@include responsive($breakpoint_small_layout - 1) {
+		width: $column_width_small_layout * $small_cols;
+	}
+}
+
+/*
+col-tablet
+Mixin to set element covering a number of columns for the tablet layout
+When calling, pass the number of columns for the tablet layout
+*/
+@mixin col-tablet($medium_cols) {
+	@include responsive($breakpoint_medium_layout - 1) {
+		width: $column_width_medium_layout * $medium_cols;
+	}
+}
+
+/*
+col-desktop
+Mixin to set element covering a number of columns for the desktop layout
+When calling, pass the number of columns for the desktop layout
+Note this is not wrapped in a media query (for older browser support) so should
+come before mobile and tablet columns
+*/
+@mixin col-desktop($large_cols) {
+    width: $column_width_large_layout * $large_cols;
+}
+
+.col-inner {
 	margin-left: $gutter_large_layout/2;
 	margin-right: $gutter_large_layout/2;
 

@@ -23,7 +23,7 @@ body {
 }
 
 .block-inner {
-	@include col-inner();
+	@extend .col-inner;
 	background-color: #dddddd;
 	padding: 10px;
 	border: 1px dashed black;
@@ -109,7 +109,7 @@ Grid overlay
 
 	.inner {
 		height: 100%;
-		@include col-inner();
+		@extend .col-inner;
 		background-color: blue;
 		opacity: 0.5;
 	}
