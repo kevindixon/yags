@@ -15,11 +15,17 @@ YAGS is based on [pocketgrid](http://arnaudleray.github.io/pocketgrid/) with a n
 ## Usage
 Content is wrapped in a 'row' block element, which in turn contain 'cell' block elements that can take up a variable number of columns in the grid. Rows and cells can be any block element (not just ```<div>```).
 
-A row is created using ```.row()``` (```@include row()``` for SASS), and a cell element is created using ```.col(@large_cols, @medium_cols, @small_cols)``` (```@include col(...)``` for SASS) where ```@large_cols``` is the number columns for the 'large' layout, ```@medium_cols``` the number of columns for the 'medium' layout and ```@small_cols``` the number of columns for the 'small' layout.
+A row to include cells in is created using ```@include row()``` - two optional parameters to add left/right margin to the row respectively, defaulting to false.
+A cell element to include in a row is created using ```@include col($large_cols, $medium_cols, $small_cols)``` where ```$large_cols``` is the number columns for the 'large' layout, ```$medium_cols``` the number of columns for the 'medium' layout and ```$small_cols``` the number of columns for the 'small' layout.
 
+###Fixed gutters
 In order to support fixed gutters, the content should then be wrapped in a inned block element by extending ```.col-inner```.
 
-If you wish a cell to bleed into the gutter, you can do this with ```.bleed()```.
+###Gutter bleed
+If you wish a cell to bleed into the gutter, you can do this with ```@include bleed()``` - two optional parameters whether to bleed to left and right respectively, defaulting to true.
+
+###Push and pull
+If you wish to swap order of cells, use ```@include push($large_cols, $medium_cols, $small_cols)``` to move one cell the right, and move the other to the left with ```@include pull($large_cols, $medium_cols, $small_cols)```.
 
 For example:
 
@@ -34,6 +40,12 @@ For example:
 		</div>
 	</div>
 </div>
+<div class="my-row">
+	<div class="my-cell second">
+	</div>
+	<div class="my-cell first">
+	</div>
+</div>
 ```
 ```sass
 /* SASS */
@@ -41,16 +53,28 @@ For example:
 $breakpoint_medium_layout: 1024px; 	/* Over-ride config */
 
 .my-row {
-	@include row();
+	@include row($margin-left: true, $margin-right: true);
 }
 .my-cell {
-	@include col($large_cols: 12, $medium_cols: 10, $small_cols: 6);
+	@include col($large_cols: 6, $medium_cols: 6, $small_cols: 2);
 }
 .my-bleed {
 	@include bleed($left: true, $right: true);
 }
 .my-inner-cell {
 	@extend .col-inner;
+}
+
+/*
+Swap order of cells with push() and pull()
+*/
+.first {
+	/* Pull to left */
+	@include pull($large_cols: 6, $medium_cols: 6, $small_cols: 2);
+}
+.second {
+	/* Push to right */
+	@include push($large_cols: 6, $medium_cols: 6, $small_cols: 2);
 }
 ```
 
