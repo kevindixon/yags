@@ -1,25 +1,25 @@
 @import "yags.scss";
 
+.col {
+	@extend .cell-base;
+}
 /*
 Generate basic classes for columns
 */
 @for $i from 1 through $columns_large_layout {
 	.col-#{$i}-desktop { 
-		@extend .cell-base;
 		@include col-desktop($i); 
 	}
 }
 
 @for $i from 1 through $columns_medium_layout {
 	.col-#{$i}-tablet { 
-		@extend .cell-base;
 		@include col-tablet($i); 
 	}
 }
 
 @for $i from 1 through $columns_small_layout {
 	.col-#{$i}-mobile { 
-		@extend .cell-base;
 		@include col-mobile($i); 
 	}
 }

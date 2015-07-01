@@ -15,7 +15,7 @@ YAGS is based on [pocketgrid](http://arnaudleray.github.io/pocketgrid/) with a n
 ## Usage
 Content is wrapped in a 'row' block element, which in turn contain 'cell' block elements that can take up a variable number of columns in the grid. Rows and cells can be any block element (not just ```<div>```).
 
-A row to include cells in is created using ```@include row()``` - two optional parameters to add left/right margin to the row respectively, defaulting to false.
+A row to include cells in is created using ```@extend .row```.
 A cell element to include in a row is created using ```@include col($large_cols, $medium_cols, $small_cols)``` where ```$large_cols``` is the number columns for the 'large' layout, ```$medium_cols``` the number of columns for the 'medium' layout and ```$small_cols``` the number of columns for the 'small' layout.
 
 ###Fixed gutters
@@ -53,7 +53,7 @@ For example:
 $breakpoint_medium_layout: 1024px; 	/* Over-ride config */
 
 .my-row {
-	@include row($margin-left: true, $margin-right: true);
+	@extend .row;
 }
 .my-cell {
 	@include col($large_cols: 6, $medium_cols: 6, $small_cols: 2);

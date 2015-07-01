@@ -10,9 +10,11 @@ Note that my use of lots of IDs here isn't a suggestion that you should use so m
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
  	<link rel="stylesheet" href="example.css" type="text/css" media="screen" />
+ 	<link rel="stylesheet" href="generate-grid-classes.css" type="text/css" media="screen" />
 </head>
 <body>
 	<h1>Yet Another Grid System (YAGS) example</h1>
+	<h2>Grid from SASS</h2>
 	<div class="block-group">
 		<!-- Main Body -->
 		<div class="block block-small">
@@ -178,14 +180,29 @@ Note that my use of lots of IDs here isn't a suggestion that you should use so m
 		</div>
 
 	</div>
-	<div id="container-two">
-		<div class="block block-xlarge">
-			<article class="block-inner">
-				<p>28 (full row, full bleed, container margin)</p>
-			</article>
+	<h2>Grid from HTML (CSS classes directly)</h2>
+	<div id="from-html" class="row">
+		<div class="col col-6-desktop col-5-tablet col-3-mobile">
+			<div class="col-inner">
+				<p>HTML1 (6 col desktop, 5 col tablet, 3 col mobile)</p>
+			</div>
 		</div>
-	</div>	
-
+		<div class="col col-6-desktop col-5-tablet col-3-mobile">
+			<div class="col-inner">
+				<p>HTML2 (6 col desktop, 5 col tablet, 3 col mobile)</p>
+			</div>
+		</div>
+		<div class="col col-6-desktop col-5-tablet col-3-mobile">
+			<div class="col-inner">
+				<p>HTML1 (6 col desktop, 5 col tablet, 3 col mobile, bleed)</p>
+			</div>
+		</div>
+		<div class="col col-6-desktop col-5-tablet col-3-mobile">
+			<div class="col-inner">
+				<p>HTML2 (6 col desktop, 5 col tablet, 3 col mobile, bleed)</p>
+			</div>
+		</div>
+	</div>
 	<!-- Show a grid over lay (transparent) -->
 	<div class="grid-overlay">
 		<div class="overlay-col">

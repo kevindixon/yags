@@ -38,7 +38,7 @@ Usage:
 /* 
 Border-box include
 */
-.border-box, .row, .block-group, #container-two, .row:before, .block-group:before, #container-two:before, .row:after, .block-group:after, #container-two:after, .cell-base, .block-small, .block-medium, .block-large, .block-xlarge, #block-twentytwo, .overlay-col, .cell-base:after, .block-small:after, .block-medium:after, .block-large:after, .block-xlarge:after, #block-twentytwo:after, .overlay-col:after, .cell-base:before, .block-small:before, .block-medium:before, .block-large:before, .block-xlarge:before, #block-twentytwo:before, .overlay-col:before {
+.border-box, .row, .block-group, .row:before, .block-group:before, .row:after, .block-group:after, .cell-base, .block-small, .block-medium, .block-large, .block-xlarge, #block-twentytwo, .overlay-col, .cell-base:after, .block-small:after, .block-medium:after, .block-large:after, .block-xlarge:after, #block-twentytwo:after, .overlay-col:after, .cell-base:before, .block-small:before, .block-medium:before, .block-large:before, .block-xlarge:before, #block-twentytwo:before, .overlay-col:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
@@ -46,50 +46,23 @@ Border-box include
 /*
 Base class for a row
 */
-.row, .block-group, #container-two {
+.row, .block-group {
   *zoom: 1;
   /* ul/li compatibility */
   list-style-type: none;
   padding: 0;
   margin: 0;
   /* Nested grid */ }
-  .row:before, .block-group:before, #container-two:before, .row:after, .block-group:after, #container-two:after {
+  .row:before, .block-group:before, .row:after, .block-group:after {
     display: table;
     content: "";
     line-height: 0; }
-  .row:after, .block-group:after, #container-two:after {
+  .row:after, .block-group:after {
     clear: both; }
-  .row > .row, .block-group > .row, #container-two > .row, .row > .block-group, .block-group > .block-group, #container-two > .block-group, .row > #container-two, .block-group > #container-two, #container-two > #container-two {
+  .row > .row, .block-group > .row, .row > .block-group, .block-group > .block-group {
     clear: none;
     float: left;
     margin: 0 !important; }
-
-/*
-Row
-*/
-/* 
-Class to add row right margin
-*/
-.row-right-margin, #container-two {
-  margin-right: 20px; }
-  @media only screen and (max-width: 1023px) {
-    .row-right-margin, #container-two {
-      margin-right: 15px; } }
-  @media only screen and (max-width: 761px) {
-    .row-right-margin, #container-two {
-      margin-right: 10px; } }
-
-/* 
-Class to add row left margin
-*/
-.row-left-margin, #container-two {
-  margin-left: 20px; }
-  @media only screen and (max-width: 1023px) {
-    .row-left-margin, #container-two {
-      margin-left: 15px; } }
-  @media only screen and (max-width: 761px) {
-    .row-left-margin, #container-two {
-      margin-left: 10px; } }
 
 /*
 Base class for a cell
@@ -119,6 +92,10 @@ When calling, pass the number of columns for the desktop layout
 Note this is not wrapped in a media query (for older browser support) so should
 come before mobile and tablet columns
 */
+/*
+col-inner
+Class to add fixed gutter to a cell element (or child)
+*/
 .col-inner, .block-inner, .overlay-col .inner {
   margin-left: 20px;
   margin-right: 20px; }
@@ -131,6 +108,31 @@ come before mobile and tablet columns
       margin-left: 10px;
       margin-right: 10px; } }
 
+/*
+bleed()
+Mixin that allows a cell to bleed into the gutter
+$left: if true, will bleed into left gutter
+$right: if true, will bleed into right gutter
+*/
+/*
+pull()
+Moves a column to the left by a specified number of columns.
+Use in combination with push() to swap the order of cells.
+$large_cols: integer specifying the number of columns to move the element by in the large layout
+$medium_cols: integer specifying the number of columns to move the element by in the medium layout
+$small_cols: integer specifying the number of columns to move the element by in the small layout
+*/
+.pull-base, #block-twentysix {
+  position: relative; }
+
+/*
+push()
+Moves a column to the right by a specified number of columns.
+Use in combination with pull() to swap the order of cells.
+$large_cols: integer specifying the number of columns to move the element by in the large layout
+$medium_cols: integer specifying the number of columns to move the element by in the medium layout
+$small_cols: integer specifying the number of columns to move the element by in the small layout
+*/
 .block {
   text-align: center; }
 
@@ -220,7 +222,6 @@ come before mobile and tablet columns
       left: 33.33333%; } }
 
 #block-twentysix {
-  position: relative;
   left: -33.33333%; }
   @media only screen and (max-width: 1023px) {
     #block-twentysix {
@@ -230,13 +231,6 @@ come before mobile and tablet columns
   @media only screen and (max-width: 761px) {
     #block-twentysix {
       left: -33.33333%; } }
-
-#container-two {
-  margin-top: 30px; }
-  #container-two .block-inner {
-    margin-left: 0px; }
-  #container-two .block-inner {
-    margin-right: 0px; }
 
 /*
 Grid overlay 
@@ -263,5 +257,13 @@ Grid overlay
     height: 100%;
     background-color: blue;
     opacity: 0.5; }
+
+/*
+Grid specified from HTML
+*/
+#from-html .col-inner, #from-html .block-inner, #from-html .overlay-col .inner, .overlay-col #from-html .inner {
+  background-color: #eeeeee;
+  border: 1px dashed black;
+  height: 100px; }
 
 /*# sourceMappingURL=example.css.map */

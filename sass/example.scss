@@ -15,7 +15,7 @@ body {
 @import "yags.scss";
 
 .block-group {
-	@include row();
+	@extend .row;
 }
 
 .block {
@@ -81,15 +81,6 @@ body {
 	@include pull(4, 4, 2);
 }
 
-#container-two {
-	@include row(true, true);
-	margin-top: 30px;
-
-	.block-inner {
-		@include bleed($left:true, $right:true);
-	}
-}
-
 /*
 Grid overlay 
 */
@@ -113,4 +104,13 @@ Grid overlay
 		background-color: blue;
 		opacity: 0.5;
 	}
+}
+
+/*
+Grid specified from HTML
+*/
+#from-html .col-inner {
+	background-color: #eeeeee;
+	border: 1px dashed black;
+	height: 100px;
 }

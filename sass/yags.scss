@@ -86,51 +86,6 @@ Base class for a row
 }
 
 /*
-Row
-*/
-@mixin row($margin-left: false, $margin-right: false) {
-	@extend .row;
-
-	@if $margin-left == true {
-		@extend .row-left-margin;
-	}
-
-	@if $margin-right == true {
-		@extend .row-right-margin;
-	}
-}
-
-/* 
-Class to add row right margin
-*/
-.row-right-margin {
-	@include responsive($breakpoint_medium_layout - 1) {
-		margin-right: $gutter_medium_layout/2;
-	}
-
-	@include responsive($breakpoint_small_layout - 1) {
-		margin-right: $gutter_small_layout/2;
-	}
-
-	margin-right: $gutter_large_layout/2;
-}
-
-/* 
-Class to add row left margin
-*/
-.row-left-margin {
-	@include responsive($breakpoint_medium_layout - 1) {
-		margin-left: $gutter_medium_layout/2;
-	}
-
-	@include responsive($breakpoint_small_layout - 1) {
-		margin-left: $gutter_small_layout/2;
-	}
-
-	margin-left: $gutter_large_layout/2;
-}
-
-/*
 Base class for a cell
 */
 .cell-base {
@@ -149,8 +104,8 @@ When calling, pass the number of columns for each layout
 @mixin col($large_cols: $num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
 	@extend .cell-base;
 	@include col-desktop($large_cols);
-    @include col-tablet($medium_cols);
-    @include col-mobile($small_cols);
+	@include col-tablet($medium_cols);
+	@include col-mobile($small_cols);
 }
 
 /*
@@ -253,20 +208,36 @@ $large_cols: integer specifying the number of columns to move the element by in 
 $medium_cols: integer specifying the number of columns to move the element by in the medium layout
 $small_cols: integer specifying the number of columns to move the element by in the small layout
 */
-@mixin pull($large_cols, $medium_cols, $small_cols) {
-	position: relative; 
+.pull-base {
+	position: relative;
+}
 
+@mixin pull($large_cols, $medium_cols, $small_cols) {
+	@extend .pull-base;
+	@include pull-desktop($large_cols);
+    @include pull-tablet($medium_cols);
+    @include pull-mobile($small_cols);
+}
+
+@mixin pull-desktop($large_cols) {
+	@extend .pull-base;
+	left: -($column_width_large_layout * $large_cols);
+}
+
+@mixin pull-tablet($medium_cols) {
+	@extend .pull-base;
 	@include responsive($breakpoint_medium_layout - 1) {
 		/* Move the column to the left
 		(left == -BEFORE's width) */
 		left: -($column_width_medium_layout * $medium_cols);
   	}
+}
 
+@mixin pull-mobile($small_cols) {
+	@extend .pull-base;
 	@include responsive($breakpoint_small_layout - 1) {
 		left: -($column_width_small_layout * $small_cols);
 	}
-
-	left: -($column_width_large_layout * $large_cols);
 }
 
 /*
@@ -277,7 +248,7 @@ $large_cols: integer specifying the number of columns to move the element by in 
 $medium_cols: integer specifying the number of columns to move the element by in the medium layout
 $small_cols: integer specifying the number of columns to move the element by in the small layout
 */
-@mixin push($large_cols:, $medium_cols:, $small_cols) {
+@mixin push($large_cols, $medium_cols, $small_cols) {
 	position: relative; 
 
 	@include responsive($breakpoint_medium_layout - 1) {
