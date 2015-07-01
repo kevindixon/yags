@@ -23,7 +23,7 @@ body {
 }
 
 .block-inner {
-	@extend .col-inner;
+	@extend .col-gutter;
 	background-color: #dddddd;
 	padding: 10px;
 	border: 1px dashed black;
@@ -46,25 +46,27 @@ body {
 	@include col(12, 12, 6);
 
 	.block-inner {
-		@include bleed($left:true, $right:true);
+		@extend .bleed-left;
+		@extend .bleed-right;
 	}
 }
 
 #block-sixteen {
 	.block-inner {
-		@include bleed($left:true, $right:false);
+		@extend .bleed-left;
 	}
 }
 
 #block-seventeen {
 	.block-inner {
-		@include bleed($left:true, $right:true);
+		@extend .bleed-left;
+		@extend .bleed-right;
 	}
 }
 
 #block-eighteen {
 	.block-inner {
-		@include bleed($left:false, $right:true);
+		@extend .bleed-right;
 	}
 }
 
@@ -100,7 +102,7 @@ Grid overlay
 
 	.inner {
 		height: 100%;
-		@extend .col-inner;
+		@extend .col-gutter;
 		background-color: blue;
 		opacity: 0.5;
 	}
@@ -109,7 +111,7 @@ Grid overlay
 /*
 Grid specified from HTML
 */
-#from-html .col-inner {
+#from-html .col-gutter {
 	background-color: #eeeeee;
 	border: 1px dashed black;
 	height: 100px;

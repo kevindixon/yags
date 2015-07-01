@@ -19,10 +19,10 @@ A row to include cells in is created using ```@extend .row```.
 A cell element to include in a row is created using ```@include col($large_cols, $medium_cols, $small_cols)``` where ```$large_cols``` is the number columns for the 'large' layout, ```$medium_cols``` the number of columns for the 'medium' layout and ```$small_cols``` the number of columns for the 'small' layout.
 
 ###Fixed gutters
-In order to support fixed gutters, the content should then be wrapped in a inned block element by extending ```.col-inner```.
+In order to support fixed gutters, the content should then be wrapped in a inned block element by extending ```.col-gutter```. Note that this is achieved with margins.
 
 ###Gutter bleed
-If you wish a cell to bleed into the gutter, you can do this with ```@include bleed()``` - two optional parameters whether to bleed to left and right respectively, defaulting to true.
+If you wish a cell to bleed into the gutter (set with ```.col-gutter```, you can do this with ```@extend .bleed-left``` and ```@extend .bleed-right```.
 
 ###Push and pull
 If you wish to swap order of cells, use ```@include push($large_cols, $medium_cols, $small_cols)``` to move one cell the right, and move the other to the left with ```@include pull($large_cols, $medium_cols, $small_cols)```.
@@ -59,7 +59,8 @@ $breakpoint_medium_layout: 1024px; 	/* Over-ride config */
 	@include col($large_cols: 6, $medium_cols: 6, $small_cols: 2);
 }
 .my-bleed {
-	@include bleed($left: true, $right: true);
+	@extend .bleed-left;
+	@extend .bleed-right;
 }
 .my-inner-cell {
 	@extend .col-inner;

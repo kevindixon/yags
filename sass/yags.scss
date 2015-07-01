@@ -142,10 +142,10 @@ come before mobile and tablet columns
 }
 
 /*
-col-inner
-Class to add fixed gutter to a cell element (or child)
+col-gutter
+Class to add fixed gutter to a cell element as margin
 */
-.col-inner {
+.col-gutter {
 	margin-left: $gutter_large_layout/2;
 	margin-right: $gutter_large_layout/2;
 
@@ -161,19 +161,19 @@ Class to add fixed gutter to a cell element (or child)
 }
 
 /*
-bleed()
-Mixin that allows a cell to bleed into the gutter
-$left: if true, will bleed into left gutter
-$right: if true, will bleed into right gutter
+bleed-left
+Class that bleeds a cell into the gutter on the left
 */
-@mixin bleed($left:true, $right:true) {
-	@if $left == true {
-		& {margin-left: 0px; }
-	}
-	
-	@if $right == true  {
-		& {margin-right: 0px; }
-	}
+.bleed-left {
+	margin-left: 0px;
+}
+
+/*
+bleed-right
+Class that bleeds a cell into the gutter on the right
+*/
+.bleed-right {
+	margin-right: 0px;
 }
 
 @mixin offset-right($large_cols:$num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {

@@ -93,27 +93,35 @@ Note this is not wrapped in a media query (for older browser support) so should
 come before mobile and tablet columns
 */
 /*
-col-inner
-Class to add fixed gutter to a cell element (or child)
+col-gutter
+Class to add fixed gutter to a cell element as margin
 */
-.col-inner, .block-inner, .overlay-col .inner {
+.col-gutter, .block-inner, .overlay-col .inner {
   margin-left: 20px;
   margin-right: 20px; }
   @media only screen and (max-width: 1023px) {
-    .col-inner, .block-inner, .overlay-col .inner {
+    .col-gutter, .block-inner, .overlay-col .inner {
       margin-left: 15px;
       margin-right: 15px; } }
   @media only screen and (max-width: 761px) {
-    .col-inner, .block-inner, .overlay-col .inner {
+    .col-gutter, .block-inner, .overlay-col .inner {
       margin-left: 10px;
       margin-right: 10px; } }
 
 /*
-bleed()
-Mixin that allows a cell to bleed into the gutter
-$left: if true, will bleed into left gutter
-$right: if true, will bleed into right gutter
+bleed-left
+Class that bleeds a cell into the gutter on the left
 */
+.bleed-left, .block-xlarge .block-inner, #block-sixteen .block-inner, #block-seventeen .block-inner {
+  margin-left: 0px; }
+
+/*
+bleed-right
+Class that bleeds a cell into the gutter on the right
+*/
+.bleed-right, .block-xlarge .block-inner, #block-seventeen .block-inner, #block-eighteen .block-inner {
+  margin-right: 0px; }
+
 /*
 pull()
 Moves a column to the left by a specified number of columns.
@@ -177,21 +185,6 @@ $small_cols: integer specifying the number of columns to move the element by in 
   @media only screen and (max-width: 761px) {
     .block-xlarge {
       width: 100%; } }
-  .block-xlarge .block-inner {
-    margin-left: 0px; }
-  .block-xlarge .block-inner {
-    margin-right: 0px; }
-
-#block-sixteen .block-inner {
-  margin-left: 0px; }
-
-#block-seventeen .block-inner {
-  margin-left: 0px; }
-#block-seventeen .block-inner {
-  margin-right: 0px; }
-
-#block-eighteen .block-inner {
-  margin-right: 0px; }
 
 #block-twentytwo {
   width: 16.66667%;
@@ -261,7 +254,7 @@ Grid overlay
 /*
 Grid specified from HTML
 */
-#from-html .col-inner, #from-html .block-inner, #from-html .overlay-col .inner, .overlay-col #from-html .inner {
+#from-html .col-gutter, #from-html .block-inner, #from-html .overlay-col .inner, .overlay-col #from-html .inner {
   background-color: #eeeeee;
   border: 1px dashed black;
   height: 100px; }
