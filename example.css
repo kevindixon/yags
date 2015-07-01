@@ -38,7 +38,7 @@ Usage:
 /* 
 Border-box include
 */
-.border-box, .row, .block-group, .row:before, .block-group:before, .row:after, .block-group:after, .cell-base, .block-small, .block-medium, .block-large, .block-xlarge, #block-twentytwo, .overlay-col, .cell-base:after, .block-small:after, .block-medium:after, .block-large:after, .block-xlarge:after, #block-twentytwo:after, .overlay-col:after, .cell-base:before, .block-small:before, .block-medium:before, .block-large:before, .block-xlarge:before, #block-twentytwo:before, .overlay-col:before {
+.border-box, .row-without-gutter, .row, .block-group, .grid-overlay-row, .block-group-no-gutter, .row-without-gutter:before, .row:before, .block-group:before, .grid-overlay-row:before, .block-group-no-gutter:before, .row-without-gutter:after, .row:after, .block-group:after, .grid-overlay-row:after, .block-group-no-gutter:after, .cell-base, .block-small, .block-medium, .block-large, .block-xlarge, #block-twentytwo, .overlay-col, .cell-base:after, .block-small:after, .block-medium:after, .block-large:after, .block-xlarge:after, #block-twentytwo:after, .overlay-col:after, .cell-base:before, .block-small:before, .block-medium:before, .block-large:before, .block-xlarge:before, #block-twentytwo:before, .overlay-col:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
@@ -46,23 +46,35 @@ Border-box include
 /*
 Base class for a row
 */
-.row, .block-group {
+.row-without-gutter, .row, .block-group, .grid-overlay-row, .block-group-no-gutter {
   *zoom: 1;
   /* ul/li compatibility */
   list-style-type: none;
   padding: 0;
   margin: 0;
   /* Nested grid */ }
-  .row:before, .block-group:before, .row:after, .block-group:after {
+  .row-without-gutter:before, .row:before, .block-group:before, .grid-overlay-row:before, .block-group-no-gutter:before, .row-without-gutter:after, .row:after, .block-group:after, .grid-overlay-row:after, .block-group-no-gutter:after {
     display: table;
     content: "";
     line-height: 0; }
-  .row:after, .block-group:after {
+  .row-without-gutter:after, .row:after, .block-group:after, .grid-overlay-row:after, .block-group-no-gutter:after {
     clear: both; }
-  .row > .row, .block-group > .row, .row > .block-group, .block-group > .block-group {
+  .row-without-gutter > .row-without-gutter, .row > .row-without-gutter, .block-group > .row-without-gutter, .grid-overlay-row > .row-without-gutter, .block-group-no-gutter > .row-without-gutter, .row-without-gutter > .row, .row > .row, .block-group > .row, .grid-overlay-row > .row, .block-group-no-gutter > .row, .row-without-gutter > .block-group, .row > .block-group, .block-group > .block-group, .grid-overlay-row > .block-group, .block-group-no-gutter > .block-group, .row-without-gutter > .grid-overlay-row, .row > .grid-overlay-row, .block-group > .grid-overlay-row, .grid-overlay-row > .grid-overlay-row, .block-group-no-gutter > .grid-overlay-row, .row-without-gutter > .block-group-no-gutter, .row > .block-group-no-gutter, .block-group > .block-group-no-gutter, .grid-overlay-row > .block-group-no-gutter, .block-group-no-gutter > .block-group-no-gutter {
     clear: none;
     float: left;
     margin: 0 !important; }
+
+.row, .block-group, .grid-overlay-row {
+  margin-left: 20px;
+  margin-right: 20px; }
+  @media only screen and (max-width: 1023px) {
+    .row, .block-group, .grid-overlay-row {
+      margin-left: 15px;
+      margin-right: 15px; } }
+  @media only screen and (max-width: 761px) {
+    .row, .block-group, .grid-overlay-row {
+      margin-left: 10px;
+      margin-right: 10px; } }
 
 /*
 Base class for a cell
@@ -232,13 +244,16 @@ Grid overlay
   top: 0;
   height: 100%;
   width: 100%;
-  z-index: 9999; }
+  z-index: 9999;
+  background-color: red;
+  opacity: 0.3; }
+
+.grid-overlay-row {
+  height: 100%; }
 
 .overlay-col {
   height: 100%;
-  width: 8.33333%;
-  background-color: red;
-  opacity: 0.3; }
+  width: 8.33333%; }
   @media only screen and (max-width: 1023px) {
     .overlay-col {
       width: 8.33333%; } }
@@ -247,6 +262,7 @@ Grid overlay
       width: 16.66667%; } }
   .overlay-col .inner {
     height: 100%;
+    z-index: 9999;
     background-color: blue;
     opacity: 0.5; }
 

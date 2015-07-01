@@ -57,7 +57,7 @@ Border-box include
 /*
 Base class for a row
 */
-.row {
+.row-without-gutter {
 	@extend .border-box;
     *zoom: 1;
 
@@ -82,6 +82,22 @@ Base class for a row
 	    clear: none;
 	    float: left;
 	    margin: 0 !important;
+	}
+}
+
+.row {
+	@extend .row-without-gutter;
+	margin-left: $gutter_large_layout/2;
+	margin-right: $gutter_large_layout/2;
+
+	@include responsive($breakpoint_medium_layout - 1) {
+		margin-left: $gutter_medium_layout/2;
+		margin-right: $gutter_medium_layout/2;
+	}
+
+	@include responsive($breakpoint_small_layout - 1) {
+		margin-left: $gutter_small_layout/2;
+		margin-right: $gutter_small_layout/2;
 	}
 }
 

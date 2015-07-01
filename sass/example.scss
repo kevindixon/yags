@@ -83,6 +83,10 @@ body {
 	@include pull(4, 4, 2);
 }
 
+.block-group-no-gutter {
+	@extend .row-without-gutter;
+}
+
 /*
 Grid overlay 
 */
@@ -92,16 +96,22 @@ Grid overlay
 	height: 100%;
 	width: 100%;
 	z-index: 9999;
+	background-color: red;
+	opacity: 0.3;
+}
+
+.grid-overlay-row {
+	@extend .row;
+	height: 100%;
 }
 
 .overlay-col {
 	height: 100%;
 	@include col(1, 1, 1);
-	background-color: red;
-	opacity: 0.3;
 
 	.inner {
 		height: 100%;
+	z-index: 9999;
 		@extend .col-gutter;
 		background-color: blue;
 		opacity: 0.5;
