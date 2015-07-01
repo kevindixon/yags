@@ -186,6 +186,10 @@ come before mobile and tablet columns
     width: $column_width_large_layout * $large_cols;
 }
 
+/*
+col-inner
+Class to add fixed gutter to a cell element (or child)
+*/
 .col-inner {
 	margin-left: $gutter_large_layout/2;
 	margin-right: $gutter_large_layout/2;
@@ -201,6 +205,12 @@ come before mobile and tablet columns
 	}
 }
 
+/*
+bleed()
+Mixin that allows a cell to bleed into the gutter
+$left: if true, will bleed into left gutter
+$right: if true, will bleed into right gutter
+*/
 @mixin bleed($left:true, $right:true) {
 	@if $left == true {
 		& {margin-left: 0px; }
@@ -235,7 +245,15 @@ come before mobile and tablet columns
 	margin-right: $column_width_large_layout * $large_cols;
 }
 
-@mixin pull($large_cols:$num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
+/*
+pull()
+Moves a column to the left by a specified number of columns.
+Use in combination with push() to swap the order of cells.
+$large_cols: integer specifying the number of columns to move the element by in the large layout
+$medium_cols: integer specifying the number of columns to move the element by in the medium layout
+$small_cols: integer specifying the number of columns to move the element by in the small layout
+*/
+@mixin pull($large_cols, $medium_cols, $small_cols) {
 	position: relative; 
 
 	@include responsive($breakpoint_medium_layout - 1) {
@@ -251,6 +269,14 @@ come before mobile and tablet columns
 	left: -($column_width_large_layout * $large_cols);
 }
 
+/*
+push()
+Moves a column to the right by a specified number of columns.
+Use in combination with pull() to swap the order of cells.
+$large_cols: integer specifying the number of columns to move the element by in the large layout
+$medium_cols: integer specifying the number of columns to move the element by in the medium layout
+$small_cols: integer specifying the number of columns to move the element by in the small layout
+*/
 @mixin push($large_cols:$num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
 	position: relative; 
 

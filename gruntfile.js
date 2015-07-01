@@ -1,7 +1,10 @@
 module.exports = function(grunt) {
 
 	grunt.initConfig({
-		sassFileSpec: { 'example.css': 'sass/example.scss' },
+		sassFileSpec: { 
+			'generate-grid-classes.css': 'sass/generate-grid-classes.scss',
+			'example.css': 'sass/example.scss' 
+		},
 
 		sass: {
 			development: {
@@ -11,7 +14,5 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-sass');
-
-	grunt.registerTask('example-sass', ['sass']);
 
 };

@@ -104,4 +104,4 @@ $gutter_small_layout: 20px;
 Note that is assumed the left/right margin of the grid is the same as the gutter.
 
 ##Examples
-There is a pre-compiled example in ```example.html```. In order to create the example CSS, [Grunt](http://gruntjs.com) is used - you can compile the CSS with ``grunt example-sass```.
+There is a pre-compiled example in ```example.html```. In order to create the example CSS, [Grunt](http://gruntjs.com) is used - you can compile the CSS with ``grunt sass```.
