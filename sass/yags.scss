@@ -277,7 +277,7 @@ $large_cols: integer specifying the number of columns to move the element by in 
 $medium_cols: integer specifying the number of columns to move the element by in the medium layout
 $small_cols: integer specifying the number of columns to move the element by in the small layout
 */
-@mixin push($large_cols:$num_columns_large, $medium_cols:$num_columns_medium, $small_cols:$num_columns_small) {
+@mixin push($large_cols:, $medium_cols:, $small_cols) {
 	position: relative; 
 
 	@include responsive($breakpoint_medium_layout - 1) {
