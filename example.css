@@ -130,7 +130,7 @@ $large_cols: integer specifying the number of columns to move the element by in 
 $medium_cols: integer specifying the number of columns to move the element by in the medium layout
 $small_cols: integer specifying the number of columns to move the element by in the small layout
 */
-.pull-base, #block-twentysix {
+.pull-push-base, #block-twentyfive, #block-twentysix {
   position: relative; }
 
 /*
@@ -203,7 +203,6 @@ $small_cols: integer specifying the number of columns to move the element by in 
       margin-left: 16.66667%; } }
 
 #block-twentyfive {
-  position: relative;
   left: 33.33333%; }
   @media only screen and (max-width: 1023px) {
     #block-twentyfive {

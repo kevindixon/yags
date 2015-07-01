@@ -24,3 +24,32 @@ Generate basic classes for columns
 	}
 }
 
+/*
+Generate pull/push classes for columns
+*/
+@for $i from 1 through $columns_large_layout {
+	.col-pull-#{$i}-desktop { 
+		@include pull-desktop($i); 
+	}
+	.col-push-#{$i}-desktop { 
+		@include push-desktop($i); 
+	}
+}
+
+@for $i from 1 through $columns_medium_layout {
+	.col-pull-#{$i}-tablet { 
+		@include pull-tablet($i); 
+	}
+	.col-push-#{$i}-tablet { 
+		@include push-tablet($i); 
+	}
+}
+
+@for $i from 1 through $columns_small_layout {
+	.col-pull-#{$i}-mobile { 
+		@include pull-mobile($i); 
+	}
+	.col-push-#{$i}-mobile { 
+		@include push-mobile($i); 
+	}
+}
