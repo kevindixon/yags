@@ -83,6 +83,12 @@ body {
 	@include pull(4, 4, 2);
 }
 
+#block-twentyseven {
+	@include push-desktop(4);
+	@include push-tablet(4);
+	@include push-mobile(0);
+}
+
 .block-group-no-gutter {
 	@extend .row-without-gutter;
 }

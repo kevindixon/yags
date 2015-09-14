@@ -236,23 +236,42 @@ $small_cols: integer specifying the number of columns to move the element by in 
 }
 
 @mixin pull-desktop($large_cols) {
-	@extend .pull-push-base;
-	left: -($column_width_large_layout * $large_cols);
+	@if $large_cols == 0 {
+		/* If pull of 0 is specified, ensure the re-positioning is reset, but without changing position: */
+		left: 0;
+	} @else {
+		@extend .pull-push-base; /* Changes position: to relative */
+		left: -($column_width_large_layout * $large_cols);
+	}
 }
 
 @mixin pull-tablet($medium_cols) {
-	@extend .pull-push-base;
-	@include responsive($breakpoint_medium_layout - 1) {
-		/* Move the column to the left
-		(left == -BEFORE's width) */
-		left: -($column_width_medium_layout * $medium_cols);
-  	}
+	@if $medium_cols == 0 {
+		/* If pull of 0 is specified, ensure the re-positioning is reset, but without changing position: */
+		@include responsive($breakpoint_medium_layout - 1) {
+			left: 0;
+		}
+	} @else {
+		@extend .pull-push-base; /* Changes position: to relative */
+		@include responsive($breakpoint_medium_layout - 1) {
+			/* Move the column to the left
+			(left == -BEFORE's width) */
+			left: -($column_width_medium_layout * $medium_cols);
+	  	}
+	}
 }
 
 @mixin pull-mobile($small_cols) {
-	@extend .pull-push-base;
-	@include responsive($breakpoint_small_layout - 1) {
-		left: -($column_width_small_layout * $small_cols);
+	@if $small_cols == 0 {
+		/* If pull of 0 is specified, ensure the re-positioning is reset, but without changing position: */
+		@include responsive($breakpoint_small_layout - 1) {
+			left: 0;
+		}
+	} @else {
+		@extend .pull-push-base; /* Changes position: to relative */
+		@include responsive($breakpoint_small_layout - 1) {
+			left: -($column_width_small_layout * $small_cols);
+		}
 	}
 }
 
@@ -265,29 +284,48 @@ $medium_cols: integer specifying the number of columns to move the element by in
 $small_cols: integer specifying the number of columns to move the element by in the small layout
 */
 @mixin push($large_cols, $medium_cols, $small_cols) {
-	@extend .pull-push-base;
+	@extend .pull-push-base; /* Changes position: to relative */
 	@include push-desktop($large_cols);
     @include push-tablet($medium_cols);
     @include push-mobile($small_cols);
 }
 
 @mixin push-desktop($large_cols) {
-	@extend .pull-push-base;
-	left: ($column_width_large_layout * $large_cols);
+	@if $large_cols == 0 {
+		/* If push of 0 is specified, ensure the re-positioning is reset, but without changing position: */
+		left: 0;
+	} @else {
+		@extend .pull-push-base; /* Changes position: to relative */
+		left: ($column_width_large_layout * $large_cols);
+	}
 }
 
 @mixin push-tablet($medium_cols) {
-	@extend .pull-push-base;
-	@include responsive($breakpoint_medium_layout - 1) {
-		/* Move the column to the right
-		(left == -BEFORE's width) */
-		left: ($column_width_medium_layout * $medium_cols);
+	@if $medium_cols == 0 {
+		/* If push of 0 is specified, ensure the re-positioning is reset, but without changing position: */
+		@include responsive($breakpoint_medium_layout - 1) {
+			left: 0;
+		}
+	} @else {
+		@extend .pull-push-base; /* Changes position: to relative */
+		@include responsive($breakpoint_medium_layout - 1) {
+			/* Move the column to the right
+			(left == -BEFORE's width) */
+			left: ($column_width_medium_layout * $medium_cols);
+		}
 	}
 }
 
 @mixin push-mobile($small_cols) {
-	@extend .pull-push-base;
-	@include responsive($breakpoint_small_layout - 1) {
-		left: ($column_width_small_layout * $small_cols);
+	@if $small_cols == 0 {
+		/* If push of 0 is specified, ensure the re-positioning is reset, but without changing position: */
+		@include responsive($breakpoint_small_layout - 1) {
+			left: 0;
+		}
+	} @else {
+		@extend .pull-push-base; /* Changes position: to relative */
+		@include responsive($breakpoint_small_layout - 1) {
+			left: ($column_width_small_layout * $small_cols);
+		}
 	}
 }

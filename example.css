@@ -142,7 +142,7 @@ $large_cols: integer specifying the number of columns to move the element by in 
 $medium_cols: integer specifying the number of columns to move the element by in the medium layout
 $small_cols: integer specifying the number of columns to move the element by in the small layout
 */
-.pull-push-base, #block-twentyfive, #block-twentysix {
+.pull-push-base, #block-twentyfive, #block-twentysix, #block-twentyseven {
   position: relative; }
 
 /*
@@ -215,7 +215,11 @@ $small_cols: integer specifying the number of columns to move the element by in 
       margin-left: 16.66667%; } }
 
 #block-twentyfive {
-  left: 33.33333%; }
+  /* Changes position: to relative */
+  /* Changes position: to relative */
+  left: 33.33333%;
+  /* Changes position: to relative */
+  /* Changes position: to relative */ }
   @media only screen and (max-width: 1023px) {
     #block-twentyfive {
       /* Move the column to the right
@@ -226,7 +230,10 @@ $small_cols: integer specifying the number of columns to move the element by in 
       left: 33.33333%; } }
 
 #block-twentysix {
-  left: -33.33333%; }
+  /* Changes position: to relative */
+  left: -33.33333%;
+  /* Changes position: to relative */
+  /* Changes position: to relative */ }
   @media only screen and (max-width: 1023px) {
     #block-twentysix {
       /* Move the column to the left
@@ -235,6 +242,20 @@ $small_cols: integer specifying the number of columns to move the element by in 
   @media only screen and (max-width: 761px) {
     #block-twentysix {
       left: -33.33333%; } }
+
+#block-twentyseven {
+  /* Changes position: to relative */
+  left: 33.33333%;
+  /* Changes position: to relative */
+  /* If push of 0 is specified, ensure the re-positioning is reset, but without changing position: */ }
+  @media only screen and (max-width: 1023px) {
+    #block-twentyseven {
+      /* Move the column to the right
+      (left == -BEFORE's width) */
+      left: 33.33333%; } }
+  @media only screen and (max-width: 761px) {
+    #block-twentyseven {
+      left: 0; } }
 
 /*
 Grid overlay 
