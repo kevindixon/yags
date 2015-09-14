@@ -27,7 +27,7 @@ In order to support fixed gutters, the content should then be wrapped in a inned
 If you wish a cell to bleed into the gutter (set with ```.col-gutter```, you can do this with ```@extend .bleed-left``` and ```@extend .bleed-right```.
 
 ###Push and pull
-If you wish to swap order of cells, use ```@include push($large_cols, $medium_cols, $small_cols)``` to move one cell the right, and move the other to the left with ```@include pull($large_cols, $medium_cols, $small_cols)```.
+If you wish to swap order of cells, use ```@include push($large_cols, $medium_cols, $small_cols)``` to move one cell the right, and move the other to the left with ```@include pull($large_cols, $medium_cols, $small_cols)```. 
 
 For example:
 
@@ -80,6 +80,7 @@ Swap order of cells with push() and pull()
 	@include push($large_cols: 6, $medium_cols: 6, $small_cols: 2);
 }
 ```
+If you specify the number of columns as 0, push/pull will be reset so in the relevant layout, the block isn't moved.
 
 ##Configuration
 For each configuration variable, a default is provided. Over-ride the default by defining the configuration variable after you include ```yags.scss```.
